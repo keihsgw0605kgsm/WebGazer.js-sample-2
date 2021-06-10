@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8">
+        <title>WebGazer デモ</title>
+        <script type="text/javascript" src="webgazer.js"></script>
+    </head>
+    <body>
+        <p id="p_x">X</p><br>
+        <p id="p_y">Y</p><br>
+        
+
+        <script>
+            const txt_x = document.getElementById("p_x");
+            const txt_y = document.getElementById("p_y");
+
+            const getGazer = () => {
+                txt_x.textContent = "X";
+                txt_y.textContent = "Y";
+                var prediction = webgazer.getCurrentPrediction();
+                if(prediction) {
+                    var x = prediction.x;
+                    var y = prediction.y;
+                    txt_x.textContent = x;
+                    txt_y.textContent = y;
+                }
+            }
+
+            setInterval(getGazer, 500);
+        </script>
+    </body>
+</html>
