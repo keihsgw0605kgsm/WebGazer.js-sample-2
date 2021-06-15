@@ -40,21 +40,27 @@
                 });
             }
 
-            /*window.onload = function () {
+            window.onload = function () {
                 startVideo();
-            }*/
+            }
 
-            Promise.all([
+            /*Promise.all([
                 webgazer.begin()
             ])
             .then(startVideo)
             .catch((err) => {
                 texr_err.textContent = (err.name+": "+err.message);
-            })
+            })*/
 
             player.addEventListener('play', () => {
-
-                setInterval(async () => {
+                var prediction = webgazer.getCurrentPrediction();
+                if(prediction) {
+                    var x = prediction.x;
+                    var y = prediction.y;
+                }
+                txt_x.textContent = prediction.x;
+                txt_y.textContent = prediction.y;
+                /*setInterval(async () => {
                     var prediction = webgazer.getCurrentPrediction();
                     if(prediction) {
                         var x = prediction.x;
@@ -65,7 +71,7 @@
                 }, 100)
                 .catch((err) => {
                     txt_err.textContent = (err.name+": "+err.message);
-                })
+                })*/
             })
             .catch((err) => {
                 txt_err.textContent = (err.name+": "+err.message);
