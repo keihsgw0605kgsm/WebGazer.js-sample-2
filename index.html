@@ -8,25 +8,49 @@
     <body>
         <p id="p_x">X</p><br>
         <p id="p_y">Y</p><br>
-        
+        <video id="video" width="720" height="560" autoplay muted></video><br>
+        <p id="err">エラーなし</p>
 
         <script>
             const txt_x = document.getElementById("p_x");
             const txt_y = document.getElementById("p_y");
+            const txt_err = document.getElementById('err');
+            const player = document.getElementById('video');
 
-            const getGazer = () => {
-                txt_x.textContent = "X";
-                txt_y.textContent = "Y";
-                var prediction = webgazer.getCurrentPrediction();
-                if(prediction) {
-                    var x = prediction.x;
-                    var y = prediction.y;
-                    txt_x.textContent = "String(x)";
-                    txt_y.textContent = "String(y)";
-                }
+            /**カメラを用いたビデオストリーミング**/
+            function startVideo() {
+                var constraints = {
+                    audio: true,
+                    video: {
+                    width: player.width,
+                    height: player.height
+                    }
+                };
+                
+                navigator.mediaDevices.getUserMedia(constraints)
+                .then(function(stream) {
+                    player.srcObject = stream;
+                    player.onloadedmetadata = function(e) {
+                    player.play();
+                    };
+                })
+                .catch(function(err) {
+                    //console.log(err.name+": "+err.message);
+                    txt_err.textContent = (err.name+": "+err.message);
+                });
             }
 
-            setInterval(getGazer, 500);
+            player.addEventListener('play', () => {
+                setInterval(async () => {
+                    var prediction = webgazer.getCurrentPrediction();
+                    if(prediction) {
+                        var x = prediction.x;
+                        var y = prediction.y;
+                    }
+                    txt_x.textContent = x;
+                    txt_y.textContent = y;
+                }, 100)
+            })
         </script>
     </body>
 </html>
