@@ -61,7 +61,7 @@
                     }
                     txt_x.textContent = typeof(prediction.x);
                     txt_y.textContent = prediction.y;*/
-                    txt_x = webgazer.getCurrentPrediction();
+                    txt_x.textContent = webgazer.getCurrentPrediction();
                 }, 100)
                 .catch((err) => {
                     txt_err.textContent = (err.name+": "+err.message);
