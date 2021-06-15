@@ -54,13 +54,14 @@
 
             player.addEventListener('play', () => {
                 setInterval(async () => {
-                    var prediction = webgazer.getCurrentPrediction();
+                    /*var prediction = webgazer.getCurrentPrediction();
                     if(prediction) {
                         var x = prediction.x;
                         var y = prediction.y;
                     }
                     txt_x.textContent = typeof(prediction.x);
-                    txt_y.textContent = prediction.y;
+                    txt_y.textContent = prediction.y;*/
+                    txt_x = webgazer.getCurrentPrediction();
                 }, 100)
                 .catch((err) => {
                     txt_err.textContent = (err.name+": "+err.message);
