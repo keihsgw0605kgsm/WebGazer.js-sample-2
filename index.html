@@ -40,6 +40,10 @@
                 });
             }
 
+            window.onload = function () {
+                startVideo();
+            }
+
             player.addEventListener('play', () => {
                 setInterval(async () => {
                     var prediction = webgazer.getCurrentPrediction();
