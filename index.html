@@ -53,29 +53,24 @@
             })*/
 
             player.addEventListener('play', () => {
-                var prediction = webgazer.getCurrentPrediction();
-                if(prediction) {
-                    var x = prediction.x;
-                    var y = prediction.y;
-                }
-                txt_x.textContent = prediction.x;
-                txt_y.textContent = prediction.y;
-                /*setInterval(async () => {
+                setInterval(async () => {
                     var prediction = webgazer.getCurrentPrediction();
                     if(prediction) {
                         var x = prediction.x;
                         var y = prediction.y;
                     }
-                    txt_x.textContent = prediction.x;
+                    txt_x.textContent = typeof(prediction.x);
                     txt_y.textContent = prediction.y;
                 }, 100)
                 .catch((err) => {
                     txt_err.textContent = (err.name+": "+err.message);
-                })*/
+                })
             })
             .catch((err) => {
                 txt_err.textContent = (err.name+": "+err.message);
             })
+
+            webga
         </script>
     </body>
 </html>
