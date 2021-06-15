@@ -52,16 +52,16 @@
                 texr_err.textContent = (err.name+": "+err.message);
             })*/
 
-            /*player.addEventListener('play', () => {
+            player.addEventListener('play', () => {
                 setInterval(async () => {
-                    var prediction = webgazer.getCurrentPrediction();
-                    if(prediction) {
+                    var prediction = await webgazer.getCurrentPrediction();
+                    /*if(prediction) {
                         var x = prediction.x;
                         var y = prediction.y;
-                    }
-                    txt_x.textContent = typeof(prediction.x);
+                    }*/
+                    txt_x.textContent = prediction.x;
                     txt_y.textContent = prediction.y;
-                    txt_x.textContent = JSON.stringify(webgazer.getCurrentPrediction());
+                    //txt_x.textContent = JSON.stringify(webgazer.getCurrentPrediction());
                 }, 100)
                 .catch((err) => {
                     txt_err.textContent = (err.name+": "+err.message);
@@ -69,9 +69,9 @@
             })
             .catch((err) => {
                 txt_err.textContent = (err.name+": "+err.message);
-            })*/
-
-            webgazer.setGazeListener(function(data, elapsedTime) {
+            })
+            
+            /*webgazer.setGazeListener(function(data, elapsedTime) {
                 if (data == null) {
                     return;
                 }
@@ -79,7 +79,7 @@
                 var yprediction = data.y; //these y coordinates are relative to the viewport
                 //console.log(elapsedTime); //elapsed time is based on time since begin was called
                 txt_x.textContent = xprediction;
-            }).begin();
+            }).begin();*/
         </script>
     </body>
 </html>
