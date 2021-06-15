@@ -54,6 +54,12 @@
                     txt_x.textContent = prediction.x;
                     txt_y.textContent = prediction.y;
                 }, 100)
+                .catch((e) => {
+                    txt_err.textContent = e;
+                })
+            })
+            .catch((e) => {
+                txt_err.textContent = e;
             })
         </script>
     </body>
