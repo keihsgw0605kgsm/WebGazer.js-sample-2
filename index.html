@@ -3,9 +3,19 @@
     <head>
         <meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8">
         <title>WebGazer デモ</title>
+        <style>
+            video {
+                width: 1280;
+                height: 960;
+            }
+            canvas {
+                width: 1280;
+                height: 960;
+            }
+        </style>
     </head>
     <body>
-        <video id="video" width="720" height="560" autoplay muted></video><br>
+        <video id="video" autoplay muted></video><br> <!--width="720" height="560" -->
         <p id="err">エラーなし</p>
         <p id="p_x">X</p><br>
         <p id="p_y">Y</p><br>
