@@ -14,10 +14,10 @@
             const txt_x = document.getElementById("p_x");
             const txt_y = document.getElementById("p_y");
             const txt_err = document.getElementById('err');
-            const player = document.getElementById('video');
+            //const player = document.getElementById('video');
 
             /**カメラを用いたビデオストリーミング**/
-            function startVideo() {
+            /*function startVideo() {
                 var constraints = {
                     audio: true,
                     video: {
@@ -41,7 +41,7 @@
 
             window.onload = function () {
                 startVideo();
-            }
+            }*/
 
             /*Promise.all([
                 webgazer.begin()
@@ -51,23 +51,18 @@
                 texr_err.textContent = (err.name+": "+err.message);
             })*/
 
-            player.addEventListener('play', () => {
+            /*player.addEventListener('play', () => {
                 setInterval(async () => {
                     //var prediction = webgazer.getCurrentPrediction();
-                    /*webgazer.getCurrentPrediction().then((gaze) => {
+                    webgazer.getCurrentPrediction().then((gaze) => {
                         txt_x.textContent = JSON.stringify(gaze);
                         txt_y.textContent = gaze.x;
-                    })*/
-                    /*prediction.then((value) => {
-                        txt_x.textContent = JSON.stringify(value);
-                        txt_y.textContent = value.y;
-                        txt_err.textContent = typeof(value);
-                    })*/
+                    })
                     //txt_x.textContent = prediction.x;
                     //txt_y.textContent = prediction.y;
                     
                 }, 500)
-            })
+            })*/
             
             webgazer.setGazeListener(function(data, elapsedTime) {
                 if (data == null) {
