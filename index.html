@@ -54,20 +54,20 @@
 
             player.addEventListener('play', () => {
                 setInterval(async () => {
-                    var prediction = webgazer.getCurrentPrediction();
-                    /*webgazer.getCurrentPrediction().then((gaze) => {
+                    //var prediction = webgazer.getCurrentPrediction();
+                    webgazer.getCurrentPrediction().then((gaze) => {
                         txt_x.textContent = JSON.stringify(gaze);
                         txt_y.textContent = gaze.x;
-                    })*/
+                    })
                     /*prediction.then((value) => {
                         txt_x.textContent = JSON.stringify(value);
                         txt_y.textContent = value.y;
                         txt_err.textContent = typeof(value);
                     })*/
-                    txt_x.textContent = prediction.x;
-                    txt_y.textContent = prediction.y;
+                    //txt_x.textContent = prediction.x;
+                    //txt_y.textContent = prediction.y;
                     
-                }, 100)
+                }, 500)
             })
             
             /*webgazer.setGazeListener(function(data, elapsedTime) {
