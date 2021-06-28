@@ -59,13 +59,13 @@
                         txt_x.textContent = JSON.stringify(gaze);
                         txt_y.textContent = gaze.x;
                     })*/
-                    prediction.then((value) => {
+                    /*prediction.then((value) => {
                         txt_x.textContent = JSON.stringify(value);
                         txt_y.textContent = value.y;
                         txt_err.textContent = typeof(value);
-                    })
-                    //txt_x.textContent = typeof(prediction);
-                    //txt_y.textContent = prediction;
+                    })*/
+                    txt_x.textContent = prediction.x;
+                    txt_y.textContent = prediction.y;
                     
                 }, 100)
                 .catch((err) => {
