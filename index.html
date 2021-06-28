@@ -68,12 +68,6 @@
                     txt_y.textContent = prediction.y;
                     
                 }, 100)
-                .catch((err) => {
-                    txt_err.textContent = (err.name+": "+err.message);
-                })
-            })
-            .catch((err) => {
-                txt_err.textContent = (err.name+": "+err.message);
             })
             
             /*webgazer.setGazeListener(function(data, elapsedTime) {
