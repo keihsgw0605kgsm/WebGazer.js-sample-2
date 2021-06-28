@@ -54,7 +54,7 @@
 
             player.addEventListener('play', () => {
                 setInterval(async () => {
-                    var prediction = webgazer.getCurrentPrediction();
+                    var prediction = await webgazer.getCurrentPrediction();
                     txt_err.textContent = "1";
                     txt_x.textContent = JSON.stringify(prediction);
                     txt_y.textContent = "2";
