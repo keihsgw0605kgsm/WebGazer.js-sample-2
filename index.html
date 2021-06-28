@@ -3,8 +3,7 @@
     <head>
         <meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8">
         <title>WebGazer デモ</title>
-        <!--<script type="text/javascript" src="webgazer.js"></script>-->
-        <script type="text/javascript" src="searchgazer.js"></script>
+        <script type="text/javascript" src="webgazer.js"></script>
     </head>
     <body>
         <video id="video" width="720" height="560" autoplay muted></video><br>
@@ -53,9 +52,9 @@
                 texr_err.textContent = (err.name+": "+err.message);
             })*/
 
-            /*player.addEventListener('play', () => {
+            player.addEventListener('play', () => {
                 setInterval(async () => {
-                    var prediction = await webgazer.getCurrentPrediction();
+                    var prediction = webgazer.getCurrentPrediction();
                     txt_x.textContent = prediction.x;
                     txt_y.textContent = prediction.y;
                     //txt_x.textContent = JSON.stringify(webgazer.getCurrentPrediction());
@@ -66,9 +65,9 @@
             })
             .catch((err) => {
                 txt_err.textContent = (err.name+": "+err.message);
-            })*/
+            })
             
-            webgazer.setGazeListener(function(data, elapsedTime) {
+            /*webgazer.setGazeListener(function(data, elapsedTime) {
                 if (data == null) {
                     return;
                 }
@@ -76,8 +75,7 @@
                 var yprediction = data.y; //these y coordinates are relative to the viewport
                 //console.log(elapsedTime); //elapsed time is based on time since begin was called
                 txt_x.textContent = xprediction;
-                txt_y.textContent = elapsedTime;
-            }).begin();
+            }).begin();*/
         </script>
     </body>
 </html>
