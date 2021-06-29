@@ -5,16 +5,18 @@
         <title>WebGazer デモ</title>
     </head>
     <body>
+        <a id="download" href="#" download="test_face.csv" onclick="handleDownload()">ダウンロード</a>
         <!--<video id="video" width="720" height="560" autoplay muted></video><br>-->
-        <p id="err">エラーなし</p>
+        <!--<p id="err">エラーなし</p>
         <p id="p_x">X</p><br>
-        <p id="p_y">Y</p><br>
+        <p id="p_y">Y</p><br>-->
 
         <script type="text/javascript" src="webgazer.js"></script>
         <script>
-            const txt_x = document.getElementById("p_x");
+            var gaze_json = "No Data"
+            /*const txt_x = document.getElementById("p_x");
             const txt_y = document.getElementById("p_y");
-            const txt_err = document.getElementById('err');
+            const txt_err = document.getElementById('err');*/
             //const player = document.getElementById('video');
 
             /**カメラを用いたビデオストリーミング**/
@@ -46,8 +48,9 @@
                 setInterval(async () => {
                     //var prediction = webgazer.getCurrentPrediction();
                     webgazer.getCurrentPrediction().then((gaze) => {
-                        txt_x.textContent = JSON.stringify(gaze);
-                        txt_y.textContent = gaze.x;
+                        //txt_x.textContent = JSON.stringify(gaze);
+                        //txt_y.textContent = gaze.x;
+                        gaze_json = JSON.stringify(gaze, null, '\t');
                     })
                     //txt_x.textContent = prediction.x;
                     //txt_y.textContent = prediction.y;
@@ -86,6 +89,14 @@
                 txt_x.textContent = xprediction;
                 txt_y.textContent = yprediction;
             }).begin();*/
+
+            /** jsonファイルのダウンロード **/
+            function handleDownload() {
+            var blob = new Blob([ gaze_json ], { "type" : "text/plain" });
+            var url = window.URL.createObjectURL(blob);
+            download.href = url;
+            window.navigator.msSaveBlob(blob, "test_face.json"); 
+            }
         </script>
     </body>
 </html>
