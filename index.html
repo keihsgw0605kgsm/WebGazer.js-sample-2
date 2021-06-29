@@ -5,7 +5,7 @@
         <title>WebGazer デモ</title>
     </head>
     <body>
-        <video id="video" width="720" height="560" autoplay muted></video><br>
+        <!--<video id="video" width="720" height="560" autoplay muted></video><br>-->
         <p id="err">エラーなし</p>
         <p id="p_x">X</p><br>
         <p id="p_y">Y</p><br>
@@ -38,11 +38,12 @@
                     //console.log(err.name+": "+err.message);
                     txt_err.textContent = (err.name+": "+err.message);
                 });
-            }
+            }*/
 
             window.onload = function () {
-                startVideo();
-            }*/
+                //startVideo();
+                webgazer.begin();
+            }
 
             /*Promise.all([
                 webgazer.begin()
@@ -65,7 +66,7 @@
                 }, 500)
             })*/
             
-            webgazer.setGazeListener(function(data, elapsedTime) {
+            /*webgazer.setGazeListener(function(data, elapsedTime) {
                 if (data == null) {
                     return;
                 }
@@ -74,7 +75,7 @@
                 //console.log(elapsedTime); //elapsed time is based on time since begin was called
                 txt_x.textContent = xprediction;
                 txt_y.textContent = yprediction;
-            }).begin();
+            }).begin();*/
         </script>
     </body>
 </html>
