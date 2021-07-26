@@ -30,8 +30,8 @@ function startVideo() {
 
 window.onload = function () {
     startVideo();
-    webgazer//.showVideoPreview(false)
-    .showPredictionPoints(false)
+    webgazer.showVideoPreview(false)
+    //.showPredictionPoints(false)
     .begin();
     setInterval(async () => {
         var predictions = {};
