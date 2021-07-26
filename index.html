@@ -5,98 +5,14 @@
         <title>WebGazer デモ</title>
     </head>
     <body>
-        <a id="download" href="#" download="test_face.csv" onclick="handleDownload()">ダウンロード</a>
-        <!--<video id="video" width="720" height="560" autoplay muted></video><br>-->
-        <!--<p id="err">エラーなし</p>
+        <video id="video" width="720" height="560" autoplay muted></video><br>
+        <!--<br><br><br><br><br><br><br><br><br><br><a id="download" href="#" download="test_gaze.json" onclick="handleDownload()">ダウンロード</a>-->
+        <br><a id="download" href="#" download="test_gaze.csv" onclick="handleDownload()">ダウンロード</a>
+        <p id="err">エラーなし</p>
         <p id="p_x">X</p><br>
-        <p id="p_y">Y</p><br>-->
+        <p id="p_y">Y</p><br>
 
         <script type="text/javascript" src="webgazer.js"></script>
-        <script>
-            var gaze_json = "No Data"
-            /*const txt_x = document.getElementById("p_x");
-            const txt_y = document.getElementById("p_y");
-            const txt_err = document.getElementById('err');*/
-            //const player = document.getElementById('video');
-
-            /**カメラを用いたビデオストリーミング**/
-            /*function startVideo() {
-                var constraints = {
-                    audio: true,
-                    video: {
-                    width: player.width,
-                    height: player.height
-                    }
-                };
-                
-                navigator.mediaDevices.getUserMedia(constraints)
-                .then(function(stream) {
-                    player.srcObject = stream;
-                    player.onloadedmetadata = function(e) {
-                    player.play();
-                    };
-                })
-                .catch(function(err) {
-                    //console.log(err.name+": "+err.message);
-                    txt_err.textContent = (err.name+": "+err.message);
-                });
-            }*/
-
-            window.onload = function () {
-                //startVideo();
-                webgazer.begin();
-                setInterval(async () => {
-                    //var prediction = webgazer.getCurrentPrediction();
-                    webgazer.getCurrentPrediction().then((gaze) => {
-                        //txt_x.textContent = JSON.stringify(gaze);
-                        //txt_y.textContent = gaze.x;
-                        gaze_json = JSON.stringify(gaze, null, '\t');
-                    })
-                    //txt_x.textContent = prediction.x;
-                    //txt_y.textContent = prediction.y;
-                    
-                }, 500)
-            }
-
-            /*Promise.all([
-                webgazer.begin()
-            ])
-            .then(startVideo)
-            .catch((err) => {
-                texr_err.textContent = (err.name+": "+err.message);
-            })*/
-
-            /*player.addEventListener('play', () => {
-                setInterval(async () => {
-                    //var prediction = webgazer.getCurrentPrediction();
-                    webgazer.getCurrentPrediction().then((gaze) => {
-                        txt_x.textContent = JSON.stringify(gaze);
-                        txt_y.textContent = gaze.x;
-                    })
-                    //txt_x.textContent = prediction.x;
-                    //txt_y.textContent = prediction.y;
-                    
-                }, 500)
-            })*/
-            
-            /*webgazer.setGazeListener(function(data, elapsedTime) {
-                if (data == null) {
-                    return;
-                }
-                var xprediction = data.x; //these x coordinates are relative to the viewport
-                var yprediction = data.y; //these y coordinates are relative to the viewport
-                //console.log(elapsedTime); //elapsed time is based on time since begin was called
-                txt_x.textContent = xprediction;
-                txt_y.textContent = yprediction;
-            }).begin();*/
-
-            /** jsonファイルのダウンロード **/
-            function handleDownload() {
-            var blob = new Blob([ gaze_json ], { "type" : "text/plain" });
-            var url = window.URL.createObjectURL(blob);
-            download.href = url;
-            window.navigator.msSaveBlob(blob, "test_face.json"); 
-            }
-        </script>
+        <script type="text/javascript" src="script.js"></script>
     </body>
 </html>
