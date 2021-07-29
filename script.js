@@ -1,8 +1,12 @@
 //var gaze_json = "No Data"
-const txt_x = document.getElementById("p_x");
+//const txt_x = document.getElementById("p_x");
 const txt_y = document.getElementById("p_y");
-const txt_err = document.getElementById('err');
 const player = document.getElementById('video');
+const checkbox_camera = document.getElementById('checkbox_camera');
+//const player = document.getElementById('video');
+/*const g_elementBtnCalibration = document.getElementsByClassName('Calibration');
+const g_elementDivCalibrationScreen = document.getElementById('div_calibration_screen');
+const g_elementDivChatScreen = document.getElementById('div_chat_screen');*/
 var test_csv = [];
 
 /**カメラを用いたビデオストリーミング**/
@@ -23,15 +27,49 @@ function startVideo() {
         };
     })
     .catch(function(err) {
-        //console.log(err.name+": "+err.message);
-        txt_err.textContent = (err.name+": "+err.message);
-    });
+        console.log(err.name+": "+err.message);
+    })
 }
 
-window.onload = function () {
+window.onload = async function() {
+    /*webgazer.showVideoPreview(false)
+    //.showPredictionPoints(false)
+    .begin();*/
+    webgazer.params.showVideoPreview = true;
+    await webgazer.setRegression('ridge') /* currently must set regression and tracker */
+        //.setTracker('clmtrackr')
+    .setGazeListener(function(data, clock) {
+        //   console.log(data); /* data is an object containing an x and y key which are the x and y prediction coordinates (no bounds limiting) */
+        //   console.log(clock); /* elapsed time in milliseconds since webgazer.begin() was called */
+    })
+    .saveDataAcrossSessions(true)
+    .begin();
+    webgazer.showVideoPreview(true) /* shows all video previews */
+        .showPredictionPoints(true) /* shows a square every 100 milliseconds where current prediction is */
+        .applyKalmanFilter(true); /* Kalman Filter defaults to on. Can be toggled by user. */
+}
+
+function beginWebChat(){
+    webgazer.showVideoPreview(false)
+        //.showPredictionPoints(false)
+    //$('#plotting_canvas').css('display', 'none');
+    //$('#div_calibration_screen').css('display', 'none');
+    //$('#div_chat_screen').css('display', 'block');
+    document.getElementById('plotting_canvas').style.display = "none";
+    document.getElementById('div_calibration_screen').style.display = "none";
+    document.getElementById('div_chat_screen').style.display = "block";
+}
+
+function onclickCheckbox_CameraMicrophone(){
+    const txt_x = document.getElementById("p_x");
+    txt_x.textContent = "aaa"
+    startVideo();
+}
+
+/*window.onload = function () {
     startVideo();
     webgazer.showVideoPreview(false)
-    //.showPredictionPoints(false)
+    .showPredictionPoints(false)
     .begin();
     setInterval(async () => {
         var predictions = {};
@@ -48,7 +86,7 @@ window.onload = function () {
         //txt_y.textContent = prediction.y;
         
     }, 500)
-}
+}*/
 
 /** jsonファイルのダウンロード **/
 /*function handleDownload() {
@@ -69,4 +107,4 @@ function handleDownload() {
     let url = (window.URL || window.webkitURL).createObjectURL(blob);
     download.href = url;
     window.navigator.msSaveBlob(blob, "test_gaze.csv");
-  }
+}
