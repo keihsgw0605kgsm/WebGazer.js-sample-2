@@ -1,5 +1,5 @@
 //var gaze_json = "No Data"
-//const txt_x = document.getElementById("p_x");
+const txt_x = document.getElementById("p_x");
 const txt_y = document.getElementById("p_y");
 const player = document.getElementById('video');
 const checkbox_camera = document.getElementById('checkbox_camera');
@@ -61,7 +61,6 @@ function beginWebChat(){
 }
 
 function onclickCheckbox_CameraMicrophone(){
-    const txt_x = document.getElementById("p_x");
     txt_x.textContent = "aaa"
     startVideo();
 }
