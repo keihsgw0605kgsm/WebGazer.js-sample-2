@@ -1,16 +1,14 @@
 var PointCalibrate = 0;
 var CalibrationPoints={};
 const N_clickEachBtn = 5;
-const g_elementBtnCalibration = document.getElementsByClassName('Calibration');
-const g_elementDivCalibrationScreen = document.getElementById('div_calibration_screen');
-const g_elementDivChatScreen = document.getElementById('div_chat_screen');
+
 /**
  * Clear the canvas and the calibration button.
  */
 function ClearCanvas(){
   $('.Calibration').hide();
-  var canvas = document.getElementById("plotting_canvas");
-  canvas.getContext('2d').clearRect(0, 0, canvas.width, canvas.height);
+  //var canvas = document.getElementById("plotting_canvas");
+  //canvas.getContext('2d').clearRect(0, 0, canvas.width, canvas.height);
 }
 
 /**
@@ -45,11 +43,6 @@ function ClearCanvas(){
 $(document).ready(function(){
   //ClearCanvas();
   //helpModalShow();
-  //g_elementDivCalibrationScreen.style.display = "block";
-  //g_elementDivChatScreen.style.display = "none";
-  //$('#div_chat_screen').hide();
-  //$('#div_chat_screen').css('display', 'none');
-  //g_elementDivChatScreen.style.display = 'none';
   $("#Pt5").hide();
   
 
@@ -83,8 +76,8 @@ $(document).ready(function(){
       $("#Pt5").show();
   
       // clears the canvas
-      var canvas = document.getElementById("plotting_canvas");
-      canvas.getContext('2d').clearRect(0, 0, canvas.width, canvas.height);
+      //var canvas = document.getElementById("plotting_canvas");
+      //canvas.getContext('2d').clearRect(0, 0, canvas.width, canvas.height);
   
       // notification for the measurement process
       swal({

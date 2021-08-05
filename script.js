@@ -32,36 +32,26 @@ function startVideo() {
 }
 
 window.onload = async function() {
-    /*webgazer.showVideoPreview(false)
-    //.showPredictionPoints(false)
-    .begin();*/
     webgazer.params.showVideoPreview = true;
-    await webgazer.setRegression('ridge') /* currently must set regression and tracker */
-        //.setTracker('clmtrackr')
+    await webgazer.setRegression('ridge') // currently must set regression and tracker
     .setGazeListener(function(data, clock) {
-        //   console.log(data); /* data is an object containing an x and y key which are the x and y prediction coordinates (no bounds limiting) */
-        //   console.log(clock); /* elapsed time in milliseconds since webgazer.begin() was called */
     })
     .saveDataAcrossSessions(true)
     .begin();
-    webgazer.showVideoPreview(true) /* shows all video previews */
-        .showPredictionPoints(true) /* shows a square every 100 milliseconds where current prediction is */
-        .applyKalmanFilter(true); /* Kalman Filter defaults to on. Can be toggled by user. */
+    webgazer.showVideoPreview(false) // shows all video previews 
+        .showPredictionPoints(false) // shows a square every 100 milliseconds where current prediction is 
+        .applyKalmanFilter(true); // Kalman Filter defaults to on. Can be toggled by user. 
 }
 
 function beginWebChat(){
     webgazer.showVideoPreview(false)
-        //.showPredictionPoints(false)
-    //$('#plotting_canvas').css('display', 'none');
-    //$('#div_calibration_screen').css('display', 'none');
-    //$('#div_chat_screen').css('display', 'block');
-    document.getElementById('plotting_canvas').style.display = "none";
-    document.getElementById('div_calibration_screen').style.display = "none";
-    document.getElementById('div_chat_screen').style.display = "block";
+        .showPredictionPoints(false);
+    //document.getElementById("plotting_canvas").style.display = "none";
+    document.getElementById("div_calibration_screen").style.display = "none";
+    document.getElementById("div_chat_screen").style.display = "block";
 }
 
 function onclickCheckbox_CameraMicrophone(){
-    txt_x.textContent = "aaa"
     startVideo();
 }
 
@@ -95,9 +85,18 @@ download.href = url;
 window.navigator.msSaveBlob(blob, "test_gaze.json"); 
 }*/
 
+function getData(){
+    webgazer.getCurrentPrediction().then((gaze) => {
+        test_csv = [
+            ['gaze_x', 'gaze_y', 'screen_width', 'screen_height'],
+            [gaze['x'], gaze['y'], window.parent.screen.width, window.parent.screen.height]
+        ]
+    })
+    handleDownload()
+}
+
 /** csvファイルの保存 **/
 function handleDownload() {
-  
     let data = test_csv.map((record)=>record.join(',')).join('\r\n');
     
     var bom = new Uint8Array([0xEF, 0xBB, 0xBF])
